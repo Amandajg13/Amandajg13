@@ -1,17 +1,18 @@
+let mySound;
+function preload() {
+  soundFormats('mp3', 'ogg');
+  mySound = loadSound('Rain On Me.mp3');
+}
+
 function setup() {
-  createCanvas(200, 200);
-  song = loadSound('Rain on Me.mp3', loaded);
-  song.setVolume(0.5);
-  sliderRate = createSlider(0, 1.5, 1, 0.01);
-  sliderPan = createSlider(-1, 1, 0, 0.01);
+  let cnv = createCanvas(100, 100);
+  cnv.mousePressed(canvasPressed);
+  background(220);
+  text('tap here to play', 10, 20);
 }
 
-function loaded() {
-  song.play();
-}
-
-function draw() {
-  background(random(255));
-  song.pan(sliderPan.value());
-  song.rate(sliderRate.value());
+function canvasPressed() {
+  // playing a sound file on a user gesture
+  // is equivalent to `userStartAudio()`
+  mySound.play();
 }
